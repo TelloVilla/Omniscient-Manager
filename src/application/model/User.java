@@ -1,5 +1,8 @@
 package application.model;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class User {
@@ -16,6 +19,61 @@ public class User {
 		this.activites = new ArrayList<Activity>();
 		this.notes = new ArrayList<Note>();
 	}
+	
+	public String getUserName() {
+		return this.username;
+	}
+	public void setUserName(String name) {
+		this.username = name;
+	}
+	public String getPassword() {
+		return this.password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public void addProjectToUser(Project p) {
+		this.projects.add(p);
+	}
+	public void removeProjectFromUserByName(String pName) {
+		for(Project p : this.projects) {
+			if(p.getProjectTitle().equals(pName)) {
+				this.projects.remove(p);
+			}
+		}
+	}
+	public void removeProjectFromUser(Project p) {
+		this.projects.remove(p);
+	}
+	public ArrayList<Project> GetProjectList(){
+		return this.projects;
+	}
+	
+	public static User verify(String username, String password) {
+		User validUser = null;
+		try{
+			BufferedReader br = new BufferedReader(new FileReader("data/users.csv"));
+			try {
+				String line = "";
+				while((line = br.readLine()) != null){
+					String[] user = line.split(",");
+					if(user[0].equals(username) && user[1].equals(password)) {
+						validUser = new User(user[0], user[1]);
+						return validUser;
+					}
+				}
+			}finally {
+				br.close();
+			}
+			
+		}catch(IOException e){
+			System.out.println("File could not be found");
+			e.printStackTrace();
+		}
+		return validUser;
+	}
+	
+	
 	
 
 }
