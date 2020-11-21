@@ -35,10 +35,20 @@ public class User {
 	public void addProjectToUser(Project p) {
 		this.projects.add(p);
 	}
+	public void addActivityToUser(Activity a) {
+		this.activites.add(a);
+	}
 	public void removeProjectFromUserByName(String pName) {
 		for(Project p : this.projects) {
 			if(p.getProjectTitle().equals(pName)) {
 				this.projects.remove(p);
+			}
+		}
+	}
+	public void removeActivityFromUserByName(String aName) {
+		for(Activity a : this.activites) {
+			if(a.getTitle().equals(aName)) {
+				this.activites.remove(a);
 			}
 		}
 	}
@@ -47,6 +57,9 @@ public class User {
 	}
 	public ArrayList<Project> GetProjectList(){
 		return this.projects;
+	}
+	public ArrayList<Activity> GetActivityList(){
+		return this.activites;
 	}
 	
 	public static User verify(String username, String password) {

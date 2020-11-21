@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane prefHeight="600.0" prefWidth="800.0">
+         <center>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <top>
+                  <Button mnemonicParsing="false" text="Calendar" translateY="35.0" BorderPane.alignment="CENTER" />
+               </top>
+               <left>
+                  <ListView fx:id="activityListView" prefWidth="300.0" BorderPane.alignment="CENTER" />
+               </left>
+               <right>
+                  <ListView fx:id="projectListView" prefWidth="300.0" BorderPane.alignment="CENTER" />
+               </right>
+               <bottom>
+                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#handleAdd" text="Add Event / Project" translateY="-35.0" BorderPane.alignment="CENTER" />
+               </bottom>
+            </BorderPane>
+         </center>
+      </BorderPane>
+   </children>
 </AnchorPane>
-

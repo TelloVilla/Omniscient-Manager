@@ -1,8 +1,12 @@
 package application.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import application.Main;
+import application.model.Activity;
 import application.model.User;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -26,13 +30,13 @@ public class LoginController implements EventHandler<ActionEvent>{
 	@Override
 	public void handle(ActionEvent e) {
 		User validUser = User.verify(userTextField.getText(), passTextField.getText());
-		System.out.println(validUser);
 		if(validUser != null) {
 			try {
+				
 				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(Main.class.getResource("../Calendar.fxml"));
-				CalendarController cc = new CalendarController(validUser);
-				loader.setController(cc);
+				loader.setLocation(Main.class.getResource("../Landing.fxml"));
+				LandingController lc = new LandingController(validUser);
+				loader.setController(lc);
 				Parent root = (Parent) loader.load();
 				Scene scene = new Scene(root);
 				scene.getStylesheets().add(Main.class.getResource("application.css").toExternalForm());
