@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 public class Project {
 	private String projectTitle;
+	private String ownerName;
 	private ArrayList<Activity> activities;
 	private ArrayList<Note> notes;
 	
-	public Project(String projectTitle) {
+	public Project(String projectTitle, String ownerName) {
 		this.projectTitle = projectTitle;
+		this.ownerName = ownerName;
 		this.activities = new ArrayList<Activity>();
 		this.notes = new ArrayList<Note>();
 	}

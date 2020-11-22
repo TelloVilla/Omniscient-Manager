@@ -3,6 +3,7 @@ package application.model;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class User {
@@ -84,6 +85,89 @@ public class User {
 			e.printStackTrace();
 		}
 		return validUser;
+	}
+	
+	public void loadUser() {
+		try{
+			BufferedReader br = new BufferedReader(new FileReader("data/projects.csv"));
+			try {
+				String line = "";
+				while((line = br.readLine()) != null){
+					String[] project = line.split(",");
+					if(project[1].equals(this.username)) {
+						Project p = new Project(project[0], project[1]);
+						this.projects.add(p);
+					}
+				}
+			}finally {
+				br.close();
+			}
+			
+		}catch(IOException e){
+			System.out.println("File could not be found");
+			e.printStackTrace();
+		}
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("data/notes.csv"));
+			try {
+				String line = "";
+				while((line = br.readLine()) != null){
+					String[] note = line.split(",");
+					if(note[3].equals(this.username)) {
+						boolean project = false;
+						LocalDate createDate = LocalDate.parse(note[0]);
+						Note n = new Note(createDate, note[1], note[2], note[3], note[4]);
+						for(Project p: this.projects) {
+							if(p.getProjectTitle().equals(note[4])) {
+								p.addNote(n);
+								project = true;
+							}
+						}
+						if(project == false) {
+							this.notes.add(n);
+						}
+					}
+				}
+			}finally {
+				br.close();
+			}
+		}catch(IOException e){
+			System.out.println("File could not be found");
+			e.printStackTrace();
+		}
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("data/activites.csv"));
+			try {
+				String line = "";
+				while((line = br.readLine()) != null){
+					String[] activity = line.split(",");
+					if(activity[3].equals(this.username)) {
+						boolean project = false;
+						LocalDate createDate = LocalDate.parse(activity[0]);
+						LocalDate beginDate = LocalDate.parse(activity[5]);
+						LocalDate endDate = LocalDate.parse(activity[6]);
+						Activity a = new Activity(createDate, activity[1], activity[2], activity[3], activity[4], beginDate, endDate);
+						for(Project p: this.projects) {
+							if(p.getProjectTitle().equals(activity[4])) {
+								p.addActivity(a);
+								project = true;
+							}
+						}
+						if(project == false) {
+							this.activites.add(a);
+						}
+					}
+				}
+			}finally {
+				br.close();
+			}
+		}catch(IOException e){
+			System.out.println("File could not be found");
+			e.printStackTrace();
+		}
+			
+		
+		
 	}
 	
 	

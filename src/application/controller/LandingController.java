@@ -25,6 +25,7 @@ public class LandingController implements EventHandler<ActionEvent>{
 	private Button addButton;
 	@FXML
 	public void initialize() {
+		this.user.loadUser();
 		for(Activity a: this.user.GetActivityList()) {
 			activityListView.getItems().add(a.getTitle() + "    Due " + a.getEndDate());
 		}

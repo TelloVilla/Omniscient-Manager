@@ -1,21 +1,21 @@
 package application.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Activity extends Note{
-	private Date beginDate;
-	private Date endDate;
+	private LocalDate beginDate;
+	private LocalDate endDate;
 	
 
-	public Activity(Date creationDate, String title, String content, Date beginDate, Date endDate) {
-		super(creationDate, title, content);
+	public Activity(LocalDate creationDate, String title, String content, String ownerName, String projectName, LocalDate beginDate, LocalDate endDate) {
+		super(creationDate, title, content, ownerName, projectName);
 		this.beginDate = beginDate;
 		this.endDate = endDate;
 	}
-	public Date getBeginDate() {
+	public LocalDate getBeginDate() {
 		return this.beginDate;
 	}
-	public Date getEndDate() {
+	public LocalDate getEndDate() {
 		return this.endDate;
 	}
 

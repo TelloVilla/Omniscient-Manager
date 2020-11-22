@@ -1,17 +1,21 @@
 package application.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Note {
 	private String id;
 	private String title;
 	private String content;
-	private Date creationDate;
+	private LocalDate creationDate;
+	private String ownerName;
+	private String projectName;
 	
-	public Note(Date creationDate, String title, String content) {
+	public Note(LocalDate creationDate, String title, String content, String ownerName, String projectName) {
 		this.creationDate = creationDate;
 		this.title = title;
 		this.content = content;
+		this.ownerName = ownerName;
+		this.projectName = projectName;
 		
 	}
 	public String getTitle() {
@@ -20,7 +24,7 @@ public class Note {
 	public String getContent() {
 		return this.content;
 	}
-	public Date getCreationDate() {
+	public LocalDate getCreationDate() {
 		return this.creationDate;
 	}
 
