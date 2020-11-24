@@ -3,7 +3,6 @@ package application.model;
 import java.time.LocalDate;
 
 public class Note {
-	private String id;
 	private String title;
 	private String content;
 	private LocalDate creationDate;
@@ -21,11 +20,33 @@ public class Note {
 	public String getTitle() {
 		return this.title;
 	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	public String getContent() {
 		return this.content;
+	}
+	public void setContent(String content) {
+		this.content = content;
 	}
 	public LocalDate getCreationDate() {
 		return this.creationDate;
 	}
+	public void setCreationDate(LocalDate creation) {
+		this.creationDate = creation;
+	}
+	public String getOwnerName() {
+		return this.ownerName;
+	}
+	public void setOwnerName(String owner) {
+		this.ownerName = owner;
+	}
+	public String getProjectName() {
+		return this.projectName;
+	}
+	public void setProjectName(String project) {
+		this.projectName = project;
+	}
+	
 
 }

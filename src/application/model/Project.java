@@ -17,6 +17,9 @@ public class Project {
 	public String getProjectTitle() {
 		return this.projectTitle;
 	}
+	public String getOwnerName() {
+		return this.ownerName;
+	}
 	public void addActivity(Activity a) {
 		this.activities.add(a);
 	}

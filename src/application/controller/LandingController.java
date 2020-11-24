@@ -5,6 +5,8 @@ import java.io.IOException;
 import application.Main;
 import application.model.Activity;
 import application.model.User;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -22,14 +24,17 @@ public class LandingController implements EventHandler<ActionEvent>{
 	@FXML
 	private ListView<String> activityListView;
 	@FXML
+	private ObservableList<String> activityList;
+	@FXML
 	private Button addButton;
 	@FXML
 	public void initialize() {
-		this.user.loadUser();
+		activityList = FXCollections.observableArrayList();
+		activityList.clear();
 		for(Activity a: this.user.GetActivityList()) {
-			activityListView.getItems().add(a.getTitle() + "    Due " + a.getEndDate());
+			activityList.add(a.getTitle() + "    Due " + a.getEndDate());
 		}
-		
+		activityListView.getItems().setAll(activityList);		
 	}
 	
 	public LandingController(User user) {

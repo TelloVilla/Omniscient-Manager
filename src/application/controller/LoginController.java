@@ -1,12 +1,8 @@
 package application.controller;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import application.Main;
-import application.model.Activity;
 import application.model.User;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -31,6 +27,7 @@ public class LoginController implements EventHandler<ActionEvent>{
 	public void handle(ActionEvent e) {
 		User validUser = User.verify(userTextField.getText(), passTextField.getText());
 		if(validUser != null) {
+			validUser.loadUser();
 			try {
 				
 				FXMLLoader loader = new FXMLLoader();

@@ -2,6 +2,7 @@ package application.model;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -38,6 +39,9 @@ public class User {
 	}
 	public void addActivityToUser(Activity a) {
 		this.activites.add(a);
+	}
+	public void addNoteToUser(Note n) {
+		this.notes.add(n);
 	}
 	public void removeProjectFromUserByName(String pName) {
 		for(Project p : this.projects) {
@@ -168,6 +172,47 @@ public class User {
 			
 		
 		
+	}
+	public void save() {
+		try {
+			new FileWriter("data/projects.csv", false).close();
+			FileWriter fw = new FileWriter("data/projects.csv");
+			for(Project p : this.projects) {
+				String project = p.getProjectTitle() + "," + p.getOwnerName();
+				fw.append(project);
+				fw.append("\n");
+			}
+			fw.flush();
+			fw.close();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		try {
+			new FileWriter("data/activites.csv", false).close();
+			FileWriter fw = new FileWriter("data/activites.csv");
+			for(Activity a : this.activites) {
+				String activity = a.getCreationDate() + "," + a.getTitle() + "," + a.getContent() + "," + a.getOwnerName() + "," + a.getProjectName() + "," + a.getBeginDate() + "," + a.getEndDate();
+				fw.append(activity);
+				fw.append("\n");
+			}
+			fw.flush();
+			fw.close();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		try {
+			new FileWriter("data/notes.csv", false).close();
+			FileWriter fw = new FileWriter("data/notes.csv");
+			for(Note n : this.notes) {
+				String note = n.getCreationDate() + "," + n.getTitle() + "," + n.getContent() + "," + n.getOwnerName() + "," + n.getProjectName();
+				fw.append(note);
+				fw.append("\n");
+			}
+			fw.flush();
+			fw.close();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
