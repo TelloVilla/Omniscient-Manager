@@ -57,6 +57,12 @@ public class User {
 			}
 		}
 	}
+	public void removeNoteFromUser(Note n) {
+		this.notes.remove(n);
+	}
+	public void removeActivityFromUser(Activity a) {
+		this.activites.remove(a);
+	}
 	public void removeProjectFromUser(Project p) {
 		this.projects.remove(p);
 	}
@@ -65,6 +71,9 @@ public class User {
 	}
 	public ArrayList<Activity> GetActivityList(){
 		return this.activites;
+	}
+	public ArrayList<Note> GetNoteList(){
+		return this.notes;
 	}
 	
 	public static User verify(String username, String password) {

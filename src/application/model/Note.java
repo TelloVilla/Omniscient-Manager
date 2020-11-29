@@ -48,5 +48,10 @@ public class Note {
 		this.projectName = project;
 	}
 	
+	@Override
+	public String toString() {
+		return this.content;
+	}
+	
 
 }

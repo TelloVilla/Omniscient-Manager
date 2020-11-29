@@ -18,5 +18,10 @@ public class Activity extends Note{
 	public LocalDate getEndDate() {
 		return this.endDate;
 	}
+	
+	@Override
+	public String toString() {
+		return this.getTitle() + " : " + this.getBeginDate() + " - " + this.getEndDate();
+	}
 
 }
