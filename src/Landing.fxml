@@ -35,6 +35,9 @@
                      </font>
                   </TextArea>
                </right>
+               <center>
+                  <Button fx:id="projectButton" mnemonicParsing="false" onAction="#handleProject" text="Projects" BorderPane.alignment="CENTER" />
+               </center>
             </BorderPane>
          </center>
       </BorderPane>

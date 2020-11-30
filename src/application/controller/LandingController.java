@@ -35,6 +35,8 @@ public class LandingController implements EventHandler<ActionEvent>{
 	@FXML
 	private TextArea infoTextArea;
 	@FXML
+	private Button projectButton;
+	@FXML
 	public void initialize() {
 		activityList = FXCollections.observableArrayList();
 		activityList.clear();
@@ -66,6 +68,24 @@ public class LandingController implements EventHandler<ActionEvent>{
 		} catch (IOException err) {
 			err.printStackTrace();
 		}
+	}
+	public void handleProject(ActionEvent e){
+		try{
+			
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("../Projects.fxml"));
+		ManagerController mc = new ManagerController(this.user);
+		loader.setController(mc);
+		Parent root = (Parent) loader.load();
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add(Main.class.getResource("application.css").toExternalForm());
+		Stage primaryStage = (Stage)projectButton.getScene().getWindow();
+		primaryStage.setScene(scene);
+		primaryStage.show();
+		//*/
+	} catch (IOException err) {
+		err.printStackTrace();
+	}
 	}
 	public void handleInfoClick(MouseEvent e) {
 		ObservableList<Note> selected = activityListView.getSelectionModel().getSelectedItems();
