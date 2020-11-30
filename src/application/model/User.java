@@ -6,14 +6,22 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+/**
+ * Class representing the user object with 2 strings and 3 ArrayLists
+ * @author Anon
+ *
+ */
 public class User {
 	private String username;
 	private String password;
 	private ArrayList<Project> projects;
 	private ArrayList<Activity> activites;
 	private ArrayList<Note> notes;
-	
+	/**
+	 * Constructor: Take in 2 strings of user info and initialize 3 ArrayLists
+	 * @param username
+	 * @param password
+	 */
 	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
@@ -21,28 +29,59 @@ public class User {
 		this.activites = new ArrayList<Activity>();
 		this.notes = new ArrayList<Note>();
 	}
-	
+	/**
+	 * Gets name of user
+	 * @return String name of user
+	 */
 	public String getUserName() {
 		return this.username;
 	}
+	/**
+	 * Sets name of user
+	 * @param name Name to set for user
+	 */
 	public void setUserName(String name) {
 		this.username = name;
 	}
+	/**
+	 * Gets password of user
+	 * @return String password of user
+	 */
 	public String getPassword() {
 		return this.password;
 	}
+	/**
+	 * Sets password of user
+	 * @param password Password to set for user
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	/**
+	 * Adds project to user projects
+	 * @param p Project to add
+	 */
 	public void addProjectToUser(Project p) {
 		this.projects.add(p);
 	}
+	/**
+	 * Adds activity to user activites
+	 * @param a Activity to add
+	 */
 	public void addActivityToUser(Activity a) {
 		this.activites.add(a);
 	}
+	/**
+	 * Adds note to user notes
+	 * @param n Note to add
+	 */
 	public void addNoteToUser(Note n) {
 		this.notes.add(n);
 	}
+	/**
+	 * Remove Project from user based on project name
+	 * @param pName Project name to search for and remove
+	 */
 	public void removeProjectFromUserByName(String pName) {
 		for(Project p : this.projects) {
 			if(p.getProjectTitle().equals(pName)) {
@@ -50,6 +89,10 @@ public class User {
 			}
 		}
 	}
+	/**
+	 * Remove Activity from user based on activity name
+	 * @param aName Activity name to search for and remove
+	 */
 	public void removeActivityFromUserByName(String aName) {
 		for(Activity a : this.activites) {
 			if(a.getTitle().equals(aName)) {
@@ -57,25 +100,54 @@ public class User {
 			}
 		}
 	}
+	/**
+	 * Remove Note from user
+	 * @param n Note to remove
+	 */
 	public void removeNoteFromUser(Note n) {
 		this.notes.remove(n);
 	}
+	/**
+	 * Remove Activity from user
+	 * @param a Activity to remove
+	 */
 	public void removeActivityFromUser(Activity a) {
 		this.activites.remove(a);
 	}
+	/**
+	 * Remove Project from user
+	 * @param p Project to remove
+	 */
 	public void removeProjectFromUser(Project p) {
 		this.projects.remove(p);
 	}
+	/**
+	 * Get project list of user
+	 * @return ArrayList<Project> List of projects
+	 */
 	public ArrayList<Project> GetProjectList(){
 		return this.projects;
 	}
+	/**
+	 * Get activity list of user
+	 * @return ArrayList<Activity> List of activities
+	 */
 	public ArrayList<Activity> GetActivityList(){
 		return this.activites;
 	}
+	/**
+	 * Get note list from user
+	 * @return ArrayList<Note> List of notes
+	 */
 	public ArrayList<Note> GetNoteList(){
 		return this.notes;
 	}
-	
+	/**
+	 * Verify user based on user.csv
+	 * @param username Username to check
+	 * @param password Password to check
+	 * @return User User created from verified login data
+	 */
 	public static User verify(String username, String password) {
 		User validUser = null;
 		try{
@@ -99,7 +171,9 @@ public class User {
 		}
 		return validUser;
 	}
-	
+	/**
+	 * Loads user data based on projects.csv, activties.csv, and notes.csv
+	 */
 	public void loadUser() {
 		try{
 			BufferedReader br = new BufferedReader(new FileReader("data/projects.csv"));
@@ -182,6 +256,9 @@ public class User {
 		
 		
 	}
+	/**
+	 * Save user data to projects.csv, activties.csv, and notes.csv
+	 */
 	public void save() {
 		try {
 			new FileWriter("data/projects.csv", false).close();
