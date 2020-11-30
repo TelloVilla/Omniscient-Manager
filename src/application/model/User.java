@@ -108,7 +108,8 @@ public class User {
 				while((line = br.readLine()) != null){
 					String[] project = line.split(",");
 					if(project[1].equals(this.username)) {
-						Project p = new Project(project[0], project[1]);
+						LocalDate createDate = LocalDate.parse(project[0]);
+						Project p = new Project(createDate, project[1], project[2],project[3], project[4],project[5]);
 						this.projects.add(p);
 					}
 				}

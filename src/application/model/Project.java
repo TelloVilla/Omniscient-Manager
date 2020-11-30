@@ -1,14 +1,16 @@
 package application.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Project {
+public class Project extends Note {
 	private String projectTitle;
 	private String ownerName;
 	private ArrayList<Activity> activities;
 	private ArrayList<Note> notes;
 	
-	public Project(String projectTitle, String ownerName) {
+	public Project(LocalDate creationDate, String title, String content, String ownerName, String projectName, String projectTitle) {
+		super(creationDate, title, content, ownerName, projectName);
 		this.projectTitle = projectTitle;
 		this.ownerName = ownerName;
 		this.activities = new ArrayList<Activity>();

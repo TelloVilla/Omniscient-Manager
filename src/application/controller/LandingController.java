@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class LandingController implements EventHandler<ActionEvent>{
@@ -33,6 +34,8 @@ public class LandingController implements EventHandler<ActionEvent>{
 	@FXML
 	private Button addButton;
 	@FXML
+	private Button projectButton;
+	@FXML
 	private TextArea infoTextArea;
 	@FXML
 	public void initialize() {
@@ -44,12 +47,46 @@ public class LandingController implements EventHandler<ActionEvent>{
 		for(Note n: this.user.GetNoteList()) {
 			activityList.add(n);
 		}
-		activityListView.getItems().setAll(activityList);		
+		activityListView.getItems().setAll(activityList);
 	}
+	
 	
 	public LandingController(User user) {
 		this.user = user;
 	}
+	//*
+	public void handleProject(ActionEvent e){
+		try{
+			/*
+			Stage primaryStage = primaryStage(projectButton.getScene());
+			primaryStage.setScene(new Scene(new AnchorPane()));
+			/*/
+		//*
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("/Omnicient-Manager-master/src/Projects.fxml"));
+		ManagerController mc = new ManagerController(this.user);
+		loader.setController(mc);
+		Parent root = (Parent) loader.load();
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add(Main.class.getResource("application.css").toExternalForm());
+		Stage primaryStage = (Stage)projectButton.getScene().getWindow();
+		primaryStage.setScene(scene);
+		primaryStage.show();
+		//*/
+	} catch (IOException err) {
+		err.printStackTrace();
+	}
+	}
+	//*/
+
+
+	@Override
+	public void handle(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	//*
 	public void handleAdd(ActionEvent e) {
 		try {
 			
@@ -128,9 +165,6 @@ public class LandingController implements EventHandler<ActionEvent>{
 			}
 		}
 	}
-	@Override
-	public void handle(ActionEvent e) {
-		
-	}
+	//*/
 
 }
