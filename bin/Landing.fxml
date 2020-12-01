@@ -36,7 +36,7 @@
                   </TextArea>
                </right>
                <center>
-                  <Button id="ProjectView" fx:id="ProjectView" mnemonicParsing="false" onAction="#handleProject" text="View Projects" BorderPane.alignment="CENTER" />
+                  <Button fx:id="projectButton" mnemonicParsing="false" onAction="#handleProject" text="Projects" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
          </center>

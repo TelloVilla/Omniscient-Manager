@@ -1,1 +1,15 @@
-/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+AnchorPane {
+  -fx-background-color: #020621; }
+
+Label {
+  -fx-text-fill: #ffffff; }
+
+.radio-button .text {
+  -fx-fill: #ffffff; }
+
+.button {
+  -fx-background-color: #72668D; }
+  .button .text {
+    -fx-fill: #ffffff; }
+
+/*# sourceMappingURL=application.css.map */
