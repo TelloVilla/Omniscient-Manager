@@ -33,11 +33,25 @@ public class Activity extends Note{
 		return this.beginDate;
 	}
 	/**
+	 * Set beginning date of Activity
+	 * @param d beginning date to set for Activity
+	 */
+	public void setBeginDate(LocalDate d) {
+		this.beginDate = d;
+	}
+	/**
 	 * Gets the end date
 	 * @return LocalDate ending date
 	 */
 	public LocalDate getEndDate() {
 		return this.endDate;
+	}
+	/**
+	 * Set end date of Activity
+	 * @param d end date to set for Activity
+	 */
+	public void setEndDate(LocalDate d) {
+		this.endDate = d;
 	}
 	/**
 	 * Gets Activity info in string format

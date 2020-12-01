@@ -28,17 +28,18 @@
                   <DatePicker fx:id="endDatePicker" translateX="75.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Begins:" translateX="20.0" GridPane.rowIndex="2" />
                   <Label text="Ends:" translateX="25.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <RadioButton fx:id="projectToggle" mnemonicParsing="false" text="Project" translateX="125.0" GridPane.columnIndex="1">
+                  <RadioButton fx:id="projectToggle" mnemonicParsing="false" onAction="#handleToggle" text="Project" translateX="125.0" GridPane.columnIndex="1">
                      <toggleGroup>
                         <ToggleGroup fx:id="creatorToggle" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="activityToggle" mnemonicParsing="false" text="Activity" toggleGroup="$creatorToggle" translateX="200.0" GridPane.columnIndex="1" />
-                  <RadioButton fx:id="noteToggle" mnemonicParsing="false" text="Note" toggleGroup="$creatorToggle" translateX="50.0" GridPane.columnIndex="1" />
+                  <RadioButton fx:id="activityToggle" mnemonicParsing="false" onAction="#handleToggle" text="Activity" toggleGroup="$creatorToggle" translateX="200.0" GridPane.columnIndex="1" />
+                  <RadioButton fx:id="noteToggle" mnemonicParsing="false" onAction="#handleToggle" text="Note" toggleGroup="$creatorToggle" translateX="50.0" GridPane.columnIndex="1" />
                   <Button fx:id="createButton" mnemonicParsing="false" onAction="#handle" text="Create" translateX="125.0" GridPane.rowIndex="3" />
                   <Label fx:id="toggleLabel" text=" " textFill="RED" translateX="140.0" translateY="25.0" GridPane.columnIndex="1" />
                   <TextField fx:id="addToProjectTextField" maxWidth="-Infinity" prefWidth="150.0" promptText="Project Name" translateX="125.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Add to:" translateX="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="statusLabel" text=" " translateX="120.0" translateY="25.0" GridPane.rowIndex="3" />
                </children>
             </GridPane>
          </center>
