@@ -265,7 +265,6 @@ public class User {
 		FileWriter fw = new FileWriter("data/users.csv",true);
 		fw.append("\n");
 		fw.append(this.username+","+this.password);
-		fw.append("\n");
 		fw.flush();
 		fw.close();
 	}catch(IOException e) {
