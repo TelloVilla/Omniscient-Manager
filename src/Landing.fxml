@@ -12,7 +12,7 @@
          <center>
             <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <top>
-                  <Button mnemonicParsing="false" text="Calendar" translateY="35.0" BorderPane.alignment="CENTER" />
+                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#handleExit" text="Log out" translateY="35.0" BorderPane.alignment="CENTER" />
                </top>
                <left>
                   <ListView fx:id="activityListView" onMouseClicked="#handleInfoClick" prefWidth="300.0" BorderPane.alignment="CENTER">

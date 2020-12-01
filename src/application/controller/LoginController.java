@@ -19,6 +19,8 @@ public class LoginController implements EventHandler<ActionEvent>{
 	@FXML
 	private Button loginButton;
 	@FXML
+	private Button NewUserButton;
+	@FXML
 	private TextField userTextField;
 	@FXML
 	private TextField passTextField;
@@ -45,6 +47,22 @@ public class LoginController implements EventHandler<ActionEvent>{
 			}
 		}
 		
+	}
+	public void handleNewUser(ActionEvent e){
+		try{
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("../NewUser.fxml"));
+		NewUserController nuc = new NewUserController();
+		loader.setController(nuc);
+		Parent root = (Parent) loader.load();
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add(Main.class.getResource("application.css").toExternalForm());
+		Stage primaryStage = (Stage)NewUserButton.getScene().getWindow();
+		primaryStage.setScene(scene);
+		primaryStage.show();
+		} catch (IOException err){
+			err.printStackTrace();
+		}
 	}
 
 }
