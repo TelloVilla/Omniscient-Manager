@@ -50,6 +50,10 @@ public class Project {
 	public void removeActivity(Activity a) {
 		this.activities.remove(a);
 	}
+	
+	public  ArrayList<Activity> GetActivitiesList(){
+		return this.activities;
+	}
 	/**
 	 * Add Note to project
 	 * @param n Note to add
@@ -64,5 +68,7 @@ public class Project {
 	public void removeNote(Note n) {
 		this.notes.remove(n);
 	}
-
+	public String toString(){
+		return this.getProjectTitle();
+	}
 }

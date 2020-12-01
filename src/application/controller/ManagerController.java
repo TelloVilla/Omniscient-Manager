@@ -43,23 +43,7 @@ public class ManagerController implements EventHandler<ActionEvent>  {
 		projectListView.getItems().setAll(projectList);
 	}
 	
-	public void handleReturn(ActionEvent e) {
-		try {
-			
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("../Projects.fxml"));
-			ManagerController mm = new ManagerController(this.user);
-			loader.setController(mm);
-			Parent root = (Parent) loader.load();
-			Scene scene = new Scene(root);
-			scene.getStylesheets().add(Main.class.getResource("application.css").toExternalForm());
-			Stage primaryStage = (Stage)homeButton.getScene().getWindow();
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch (IOException err) {
-			err.printStackTrace();
-		}
-	}
+
 	public void handleHome(ActionEvent e) {
 		try {
 			
@@ -77,6 +61,26 @@ public class ManagerController implements EventHandler<ActionEvent>  {
 			err.printStackTrace();
 		}
 	}
+	/*/
+	public void handlerOpen (ActionEvent e){
+		System.out.println("WHYME");
+		try{
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("../MiniProject.fxml"));
+			MiniProjectController mpc = new MiniProjectController();
+			loader.setController(mpc);
+			Parent root = (Parent) loader.load();
+			Scene scene = new Scene(root);
+			scene.getStylesheets().add(Main.class.getResource("application.css").toExternalForm());
+			Stage miniStage = new Stage();
+			miniStage.setScene(scene);
+			miniStage.show();
+			
+		}catch (IOException err){
+			err.printStackTrace();
+		}
+	}
+	//*/
 
 	@Override
 	public void handle(ActionEvent arg0) {

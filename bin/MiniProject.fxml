@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <BorderPane prefHeight="277.0" prefWidth="241.0">
+         <left>
+            <ListView fx:id="TaskListView" prefHeight="277.0" prefWidth="242.0" BorderPane.alignment="CENTER">
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                        <CheckMenuItem fx:id="CompletedMenu" mnemonicParsing="false" text="Completed?" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
+            </ListView>
+         </left>
+         <top>
+            <Label text="Tasks" BorderPane.alignment="CENTER" />
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>
