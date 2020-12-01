@@ -97,6 +97,7 @@ public class CreatorController implements EventHandler<ActionEvent>{
 		RadioButton type = (RadioButton)creatorToggle.getSelectedToggle();
 		if(type.getText().equals("Note")) {
 			beginDatePicker.setDisable(true);
+			contentTextArea.setDisable(false);
 			endDatePicker.setDisable(true);
 			addToProjectTextField.setDisable(false);
 
