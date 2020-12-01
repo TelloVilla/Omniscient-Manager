@@ -256,9 +256,19 @@ public class User {
 		
 		
 	}
-	/**
-	 * Save user data to projects.csv, activties.csv, and notes.csv
-	 */
+
+	public void saveUser(){
+		try{
+			
+		FileWriter fw = new FileWriter("data/users.csv",true);
+		fw.append(this.username+","+this.password);
+		fw.append("\n");
+		fw.flush();
+		fw.close();
+	}catch(IOException e) {
+		e.printStackTrace();
+	}
+	}
 	public void save() {
 		try {
 			new FileWriter("data/projects.csv", false).close();

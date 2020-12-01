@@ -47,12 +47,14 @@ public class CreatorController implements EventHandler<ActionEvent>{
 	@FXML
 	private RadioButton activityToggle;
 	@FXML
+
 	private RadioButton projectToggle;
 	@FXML
 	private Label toggleLabel;
 	@FXML
 	private Label statusLabel;
 	@FXML
+
 	private Button createButton;
 	@FXML
 	private Button homeButton;
@@ -77,8 +79,10 @@ public class CreatorController implements EventHandler<ActionEvent>{
 	public void initialize() {
 		if(this.editMode == true && editActivity != null) {
 			activityToggle.setSelected(true);
+
 			projectToggle.setDisable(true);
 			noteToggle.setDisable(true);
+
 			titleTextField.setText(editActivity.getTitle());
 			contentTextArea.setText(editActivity.getContent());
 			addToProjectTextField.setText(editActivity.getProjectName());
@@ -86,13 +90,16 @@ public class CreatorController implements EventHandler<ActionEvent>{
 			endDatePicker.setValue(editActivity.getEndDate());
 		}else if(this.editMode == true && editNote != null) {
 			noteToggle.setSelected(true);
+
 			projectToggle.setDisable(true);
 			activityToggle.setDisable(true);
+
 			titleTextField.setText(editNote.getTitle());
 			contentTextArea.setText(editNote.getContent());
 			addToProjectTextField.setText(editNote.getProjectName());
 		}
 	}
+
 	public void handleToggle(ActionEvent e) {
 		RadioButton type = (RadioButton)creatorToggle.getSelectedToggle();
 		if(type.getText().equals("Note")) {
@@ -119,6 +126,7 @@ public class CreatorController implements EventHandler<ActionEvent>{
 			
 		}
 	}
+
 	@Override
 	public void handle(ActionEvent e) {
 		RadioButton type = (RadioButton)creatorToggle.getSelectedToggle();
@@ -131,6 +139,7 @@ public class CreatorController implements EventHandler<ActionEvent>{
 		if(type == null) {
 			toggleLabel.setText("Select Type");
 			return;
+
 		}
 		if(this.editMode == true) {
 			if(type.getText().equals("Note")) {
@@ -157,6 +166,7 @@ public class CreatorController implements EventHandler<ActionEvent>{
 			return;
 		}
 		if(type.getText().equals("Note")) {
+
 			LocalDate creationDate = LocalDate.now();
 			Note newNote = new Note(creationDate, titleTextField.getText(), contentTextArea.getText(), this.user.getUserName(), projectTitle);
 			this.user.addNoteToUser(newNote);
@@ -179,7 +189,9 @@ public class CreatorController implements EventHandler<ActionEvent>{
 		addToProjectTextField.clear();
 		beginDatePicker.getEditor().clear();
 		endDatePicker.getEditor().clear();
+
 		statusLabel.setText("Successful");
+
 	}
 	public void handleHome(ActionEvent e) {
 		try {
