@@ -108,8 +108,7 @@ public class User {
 				while((line = br.readLine()) != null){
 					String[] project = line.split(",");
 					if(project[1].equals(this.username)) {
-						LocalDate createDate = LocalDate.parse(project[0]);
-						Project p = new Project(createDate, project[1], project[2],project[3], project[4],project[5]);
+						Project p = new Project(project[0], project[1]);
 						this.projects.add(p);
 					}
 				}
@@ -182,6 +181,18 @@ public class User {
 			
 		
 		
+	}
+	public void saveUser(){
+		try{
+			
+		FileWriter fw = new FileWriter("data/users.csv",true);
+		fw.append(this.username+","+this.password);
+		fw.append("\n");
+		fw.flush();
+		fw.close();
+	}catch(IOException e) {
+		e.printStackTrace();
+	}
 	}
 	public void save() {
 		try {

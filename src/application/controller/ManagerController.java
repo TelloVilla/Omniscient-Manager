@@ -24,11 +24,11 @@ public class ManagerController implements EventHandler<ActionEvent>  {
 	
 	private User user;
 	@FXML
-	private Button returnButton;
+	private Button homeButton;
 	@FXML
-	private ListView<Note> projectListView;
-	@FXML
-	private  ObservableList<Note> projectList;
+	private ListView<Project> projectListView;
+	
+	private  ObservableList<Project> projectList;
 	
 	public ManagerController(User user) {
 		this.user = user;
@@ -39,9 +39,6 @@ public class ManagerController implements EventHandler<ActionEvent>  {
 		projectList.clear();
 		for(Project a: this.user.GetProjectList()) {
 			projectList.add(a);
-		}
-		for(Note n: this.user.GetNoteList()) {
-			projectList.add(n);
 		}
 		projectListView.getItems().setAll(projectList);
 	}
@@ -56,7 +53,24 @@ public class ManagerController implements EventHandler<ActionEvent>  {
 			Parent root = (Parent) loader.load();
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(Main.class.getResource("application.css").toExternalForm());
-			Stage primaryStage = (Stage)returnButton.getScene().getWindow();
+			Stage primaryStage = (Stage)homeButton.getScene().getWindow();
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (IOException err) {
+			err.printStackTrace();
+		}
+	}
+	public void handleHome(ActionEvent e) {
+		try {
+			
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("../Landing.fxml"));
+			LandingController lc = new LandingController(this.user);
+			loader.setController(lc);
+			Parent root = (Parent) loader.load();
+			Scene scene = new Scene(root);
+			scene.getStylesheets().add(Main.class.getResource("application.css").toExternalForm());
+			Stage primaryStage = (Stage)homeButton.getScene().getWindow();
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (IOException err) {
@@ -66,7 +80,6 @@ public class ManagerController implements EventHandler<ActionEvent>  {
 
 	@Override
 	public void handle(ActionEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 	
