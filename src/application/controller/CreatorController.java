@@ -47,8 +47,14 @@ public class CreatorController implements EventHandler<ActionEvent>{
 	@FXML
 	private RadioButton activityToggle;
 	@FXML
+
+	private RadioButton projectToggle;
+	@FXML
 	private Label toggleLabel;
 	@FXML
+	private Label statusLabel;
+	@FXML
+
 	private Button createButton;
 	@FXML
 	private Button homeButton;
@@ -73,6 +79,10 @@ public class CreatorController implements EventHandler<ActionEvent>{
 	public void initialize() {
 		if(this.editMode == true && editActivity != null) {
 			activityToggle.setSelected(true);
+
+			projectToggle.setDisable(true);
+			noteToggle.setDisable(true);
+
 			titleTextField.setText(editActivity.getTitle());
 			contentTextArea.setText(editActivity.getContent());
 			addToProjectTextField.setText(editActivity.getProjectName());
@@ -80,12 +90,43 @@ public class CreatorController implements EventHandler<ActionEvent>{
 			endDatePicker.setValue(editActivity.getEndDate());
 		}else if(this.editMode == true && editNote != null) {
 			noteToggle.setSelected(true);
+
+			projectToggle.setDisable(true);
+			activityToggle.setDisable(true);
+
 			titleTextField.setText(editNote.getTitle());
 			contentTextArea.setText(editNote.getContent());
 			addToProjectTextField.setText(editNote.getProjectName());
 		}
 	}
-	
+
+	public void handleToggle(ActionEvent e) {
+		RadioButton type = (RadioButton)creatorToggle.getSelectedToggle();
+		if(type.getText().equals("Note")) {
+			beginDatePicker.setDisable(true);
+			contentTextArea.setDisable(false);
+			endDatePicker.setDisable(true);
+			addToProjectTextField.setDisable(false);
+
+			
+			
+		}else if(type.getText().equals("Activity")) {
+			contentTextArea.setDisable(false);
+			beginDatePicker.setDisable(false);
+			endDatePicker.setDisable(false);
+			addToProjectTextField.setDisable(false);
+
+			
+		}
+		else if(type.getText().equals("Project")) {
+			contentTextArea.setDisable(true);
+			beginDatePicker.setDisable(true);
+			endDatePicker.setDisable(true);
+			addToProjectTextField.setDisable(true);
+			
+		}
+	}
+
 	@Override
 	public void handle(ActionEvent e) {
 		RadioButton type = (RadioButton)creatorToggle.getSelectedToggle();
@@ -98,7 +139,34 @@ public class CreatorController implements EventHandler<ActionEvent>{
 		if(type == null) {
 			toggleLabel.setText("Select Type");
 			return;
-		}else if(type.getText().equals("Note")) {
+
+		}
+		if(this.editMode == true) {
+			if(type.getText().equals("Note")) {
+				this.editNote.setTitle(titleTextField.getText());
+				this.editNote.setContent(contentTextArea.getText());
+				this.editNote.setProjectName(projectTitle);
+				this.user.save();
+				
+			}else if(type.getText().equals("Activity")) {
+				this.editActivity.setTitle(titleTextField.getText());
+				this.editActivity.setContent(contentTextArea.getText());
+				this.editActivity.setProjectName(projectTitle);
+				this.editActivity.setBeginDate(beginDate);
+				this.editActivity.setEndDate(endDate);
+				this.user.save();
+				
+			}
+			else if(type.getText().equals("Project")) {
+				Project newProject = new Project(titleTextField.getText(), this.user.getUserName());
+				this.user.addProjectToUser(newProject);
+				this.user.save();
+			}
+			statusLabel.setText("Successful");
+			return;
+		}
+		if(type.getText().equals("Note")) {
+
 			LocalDate creationDate = LocalDate.now();
 			Note newNote = new Note(creationDate, titleTextField.getText(), contentTextArea.getText(), this.user.getUserName(), projectTitle);
 			this.user.addNoteToUser(newNote);
@@ -121,7 +189,9 @@ public class CreatorController implements EventHandler<ActionEvent>{
 		addToProjectTextField.clear();
 		beginDatePicker.getEditor().clear();
 		endDatePicker.getEditor().clear();
-		
+
+		statusLabel.setText("Successful");
+
 	}
 	public void handleHome(ActionEvent e) {
 		try {

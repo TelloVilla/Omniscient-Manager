@@ -29,7 +29,7 @@ public class ManagerController implements EventHandler<ActionEvent>  {
 	private ListView<Project> projectListView;
 	
 	private  ObservableList<Project> projectList;
-	
+
 	public ManagerController(User user) {
 		this.user = user;
 	}

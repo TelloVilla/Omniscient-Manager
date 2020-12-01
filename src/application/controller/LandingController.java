@@ -1,9 +1,6 @@
 package application.controller;
 
 import java.io.IOException;
-
-import com.sun.javafx.scene.control.skin.LabeledText;
-
 import application.Main;
 import application.model.Activity;
 import application.model.Note;
