@@ -121,12 +121,26 @@ public class CreatorController implements EventHandler<ActionEvent>{
 	}
 	@Override
 	public void handle(ActionEvent e) {
+		boolean projectFound = false;
+		Project addProject = null;
 		RadioButton type = (RadioButton)creatorToggle.getSelectedToggle();
 		LocalDate beginDate = beginDatePicker.getValue();
 		LocalDate endDate = endDatePicker.getValue();
 		String projectTitle = addToProjectTextField.getText();
 		if(projectTitle.equals("")) {
 			projectTitle = "none";
+		}else {
+			for(Project p: this.user.GetProjectList()) {
+				if(p.getProjectTitle().equals(projectTitle)) {
+					projectFound = true;
+					addProject = p;
+				}
+			}
+			if(projectFound == false) {
+				statusLabel.setText("Project Not Found");
+				return;
+			}
+			
 		}
 		if(type == null) {
 			toggleLabel.setText("Select Type");
@@ -157,19 +171,38 @@ public class CreatorController implements EventHandler<ActionEvent>{
 			return;
 		}
 		if(type.getText().equals("Note")) {
+			if(titleTextField.getText().equals("") || contentTextArea.getText().equals("") || this.user.getUserName().equals("")) {
+				statusLabel.setText("Missing Required Field");
+				return;
+			}
 			LocalDate creationDate = LocalDate.now();
 			Note newNote = new Note(creationDate, titleTextField.getText(), contentTextArea.getText(), this.user.getUserName(), projectTitle);
+			if(projectFound) {
+				addProject.addNote(newNote);
+			}
 			this.user.addNoteToUser(newNote);
 			this.user.save();
 			
 		}else if(type.getText().equals("Activity")) {
+			if(titleTextField.getText().equals("") || contentTextArea.getText().equals("") || this.user.getUserName().equals("") || beginDate == null || endDate == null) {
+				statusLabel.setText("Missing Required Field");
+				return;
+			}
 			LocalDate creationDate = LocalDate.now();
-			Activity newActivity = new Activity(creationDate, titleTextField.getText(), contentTextArea.getText(), this.user.getUserName(), projectTitle, beginDate, endDate);
+			Activity newActivity = new Activity(creationDate, titleTextField.getText(), contentTextArea.getText(), this.user.getUserName(), projectTitle, beginDate, endDate, false);
+			if(projectFound) {
+				addProject.addActivity(newActivity);
+			}
 			this.user.addActivityToUser(newActivity);
+			
 			this.user.save();
 			
 		}
 		else if(type.getText().equals("Project")) {
+			if(titleTextField.getText().equals("")) {
+				statusLabel.setText("Missing Required Field");
+				return;
+			}
 			Project newProject = new Project(titleTextField.getText(), this.user.getUserName());
 			this.user.addProjectToUser(newProject);
 			this.user.save();

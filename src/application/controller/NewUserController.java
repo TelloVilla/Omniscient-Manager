@@ -54,7 +54,6 @@ public void handleReturn(ActionEvent e){
 }
 
 public void handleConfirmButton(ActionEvent e){
-	System.out.println("TestConfirm");
 	User user = User.verify(NewUsername.getText(), NewPassword.getText());
 	if (user == null){
 		try{
@@ -78,13 +77,6 @@ public void handleConfirmButton(ActionEvent e){
 		
 }
 
-public void handleNewUsername(ActionEvent e){
-	System.out.println("TestUsername");
-}
-
-public void handleNewPassword(ActionEvent e){
-	System.out.println("TestPassword");
-}
 
 @Override
 public void handle(ActionEvent arg0) {

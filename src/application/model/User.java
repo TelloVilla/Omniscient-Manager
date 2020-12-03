@@ -65,7 +65,7 @@ public class User {
 		this.projects.add(p);
 	}
 	/**
-	 * Adds activity to user activites
+	 * Adds activity to user activities
 	 * @param a Activity to add
 	 */
 	public void addActivityToUser(Activity a) {
@@ -233,7 +233,8 @@ public class User {
 						LocalDate createDate = LocalDate.parse(activity[0]);
 						LocalDate beginDate = LocalDate.parse(activity[5]);
 						LocalDate endDate = LocalDate.parse(activity[6]);
-						Activity a = new Activity(createDate, activity[1], activity[2], activity[3], activity[4], beginDate, endDate);
+						Boolean taskCompleted = Boolean.parseBoolean(activity[7]);
+						Activity a = new Activity(createDate, activity[1], activity[2], activity[3], activity[4], beginDate, endDate,taskCompleted);
 						for(Project p: this.projects) {
 							if(p.getProjectTitle().equals(activity[4])) {
 								p.addActivity(a);
@@ -292,7 +293,7 @@ public class User {
 			new FileWriter("data/activites.csv", false).close();
 			FileWriter fw = new FileWriter("data/activites.csv");
 			for(Activity a : this.activites) {
-				String activity = a.getCreationDate() + "," + a.getTitle() + "," + a.getContent() + "," + a.getOwnerName() + "," + a.getProjectName() + "," + a.getBeginDate() + "," + a.getEndDate();
+				String activity = a.getCreationDate() + "," + a.getTitle() + "," + a.getContent() + "," + a.getOwnerName() + "," + a.getProjectName() + "," + a.getBeginDate() + "," + a.getEndDate() + "," + a.getCompletionStatus();
 				fw.append(activity);
 				fw.append("\n");
 			}

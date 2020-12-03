@@ -36,6 +36,9 @@ public class Project {
 	public String getOwnerName() {
 		return this.ownerName;
 	}
+	public ArrayList<Activity> getActivities(){
+		return this.activities;
+	}
 	/**
 	 * Add Activity to project
 	 * @param a Activity to add
@@ -64,5 +67,7 @@ public class Project {
 	public void removeNote(Note n) {
 		this.notes.remove(n);
 	}
-
+	public String toString(){
+		return this.getProjectTitle()+" - Tasks: "+this.activities;
+	}
 }

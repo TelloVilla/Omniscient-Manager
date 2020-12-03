@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -24,6 +25,8 @@ public class LoginController implements EventHandler<ActionEvent>{
 	private TextField userTextField;
 	@FXML
 	private TextField passTextField;
+	@FXML
+	private Label loginStatusLabel;
 	
 	@Override
 	public void handle(ActionEvent e) {
@@ -31,7 +34,7 @@ public class LoginController implements EventHandler<ActionEvent>{
 		if(validUser != null) {
 			validUser.loadUser();
 			try {
-				
+				loginStatusLabel.setText("Successful Login");
 				FXMLLoader loader = new FXMLLoader();
 				loader.setLocation(Main.class.getResource("../Landing.fxml"));
 				LandingController lc = new LandingController(validUser);
@@ -45,6 +48,8 @@ public class LoginController implements EventHandler<ActionEvent>{
 			} catch (IOException err) {
 				err.printStackTrace();
 			}
+		}else{
+			loginStatusLabel.setText("Invalid Login");
 		}
 		
 	}
