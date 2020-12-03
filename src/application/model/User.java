@@ -65,7 +65,7 @@ public class User {
 		this.projects.add(p);
 	}
 	/**
-	 * Adds activity to user activites
+	 * Adds activity to user activities
 	 * @param a Activity to add
 	 */
 	public void addActivityToUser(Activity a) {
@@ -233,7 +233,8 @@ public class User {
 						LocalDate createDate = LocalDate.parse(activity[0]);
 						LocalDate beginDate = LocalDate.parse(activity[5]);
 						LocalDate endDate = LocalDate.parse(activity[6]);
-						Activity a = new Activity(createDate, activity[1], activity[2], activity[3], activity[4], beginDate, endDate);
+						Boolean taskCompleted = Boolean.parseBoolean(activity[7]);
+						Activity a = new Activity(createDate, activity[1], activity[2], activity[3], activity[4], beginDate, endDate,taskCompleted);
 						for(Project p: this.projects) {
 							if(p.getProjectTitle().equals(activity[4])) {
 								p.addActivity(a);
@@ -256,18 +257,24 @@ public class User {
 		
 		
 	}
-
+	/**
+	 * Add new User and save to users.csv
+	 */
 	public void saveUser(){
 		try{
 			
 		FileWriter fw = new FileWriter("data/users.csv",true);
-		fw.append("\n"+this.username+","+this.password);
+		fw.append("\n");
+		fw.append(this.username+","+this.password);
 		fw.flush();
 		fw.close();
 	}catch(IOException e) {
 		e.printStackTrace();
 	}
 	}
+	/**
+	 * Save user data to projects.csv, activties.csv, and notes.csv
+	 */
 	public void save() {
 		try {
 			new FileWriter("data/projects.csv", false).close();
@@ -286,7 +293,7 @@ public class User {
 			new FileWriter("data/activites.csv", false).close();
 			FileWriter fw = new FileWriter("data/activites.csv");
 			for(Activity a : this.activites) {
-				String activity = a.getCreationDate() + "," + a.getTitle() + "," + a.getContent() + "," + a.getOwnerName() + "," + a.getProjectName() + "," + a.getBeginDate() + "," + a.getEndDate();
+				String activity = a.getCreationDate() + "," + a.getTitle() + "," + a.getContent() + "," + a.getOwnerName() + "," + a.getProjectName() + "," + a.getBeginDate() + "," + a.getEndDate() + "," + a.getCompletionStatus();
 				fw.append(activity);
 				fw.append("\n");
 			}

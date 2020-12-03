@@ -9,6 +9,7 @@ import java.time.LocalDate;
 public class Activity extends Note{
 	private LocalDate beginDate;
 	private LocalDate endDate;
+	private Boolean isCompleted;
 	
 	/**
 	 * Constructor: Take in 5 strings and 2 LocalDate of information
@@ -20,7 +21,7 @@ public class Activity extends Note{
 	 * @param beginDate
 	 * @param endDate
 	 */
-	public Activity(LocalDate creationDate, String title, String content, String ownerName, String projectName, LocalDate beginDate, LocalDate endDate) {
+	public Activity(LocalDate creationDate, String title, String content, String ownerName, String projectName, LocalDate beginDate, LocalDate endDate, Boolean isCompleted) {
 		super(creationDate, title, content, ownerName, projectName);
 		this.beginDate = beginDate;
 		this.endDate = endDate;
@@ -57,9 +58,20 @@ public class Activity extends Note{
 	 * Gets Activity info in string format
 	 * @return String activity info
 	 */
+	
+	public Boolean getCompletionStatus(){
+		return this.isCompleted;
+	}
+	
+	
+	
 	@Override
 	public String toString() {
 		return this.getTitle() + " : " + this.getBeginDate() + " - " + this.getEndDate();
+	}
+	public void setCompletionStatus(boolean yesno) {
+		this.isCompleted = yesno;
+		
 	}
 
 }

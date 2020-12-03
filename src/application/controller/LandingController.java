@@ -34,6 +34,8 @@ public class LandingController implements EventHandler<ActionEvent>{
 	@FXML
 	private Button projectButton;
 	@FXML
+	private Button logoutButton;
+	@FXML
 	public void initialize() {
 		activityList = FXCollections.observableArrayList();
 		activityList.clear();
@@ -143,6 +145,21 @@ public class LandingController implements EventHandler<ActionEvent>{
 			} catch (IOException err) {
 				err.printStackTrace();
 			}
+		}
+	}
+	public void handleExit(ActionEvent e) {
+		try {
+			
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("../Login.fxml"));
+			Parent root = (Parent) loader.load();
+			Scene scene = new Scene(root);
+			scene.getStylesheets().add(Main.class.getResource("application.css").toExternalForm());
+			Stage primaryStage = (Stage)logoutButton.getScene().getWindow();
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (IOException err) {
+			err.printStackTrace();
 		}
 	}
 	@Override
