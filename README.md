@@ -1,4 +1,4 @@
-# Omnicient-Manager
+# Omniscient-Manager
 PURPOSE
 A JavaFx general purpose project manager. This application allows its user to create a profile and save activities and projects, and take notes.
 The main utility of this application is to help its user organize their many activties and busy schedules.
